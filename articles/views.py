@@ -4,10 +4,14 @@ from .models import Article
 from .serializers import ArticleSerializer
 from .permissions import IsAuthorOrReadOnly
 
+from articles import models
+from . import models
+from .permissions import IsAuthorOrReadOnly
+
 
 class ArticleListAPIView(generics.ListCreateAPIView):  #GET request for all
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Article.objects.order_by('-created_at')
+    queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
 
     def perform_create(self, serializer):

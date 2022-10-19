@@ -3,9 +3,31 @@ from django.conf import settings
 
 
 class Article(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     title = models.CharField(max_length=255)
     body = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField()
+    image = models.ImageField(upload_to="articles", null=True)
+    is_published = models.BooleanField(default=False)
 
+    GENERAL = "General"
+    FOOTBALL = "Football"
+    HOCKEY = "Hockey"
+    BASEBALL = "Baseball"
+    BASKETBALL = "Basketball"
+    SOCCER = "Soccer"
+    TABS = [
+        (GENERAL, "General"),
+        (FOOTBALL, "Football"),
+        (HOCKEY, "Hockey"),
+        (BASEBALL, "Baseball"),
+        (BASKETBALL, "Basketball"),
+    ]
+    catagory = models.CharField(
+        max_length=10, 
+        choices=TABS, 
+        default=GENERAL,
+    )
+
+
+    def __str__(self):
+        return self.title
