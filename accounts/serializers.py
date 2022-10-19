@@ -5,7 +5,7 @@ from . import models
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    username = serializers.ReadOnlyField(source='user.name')
+    username = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = models.Profile

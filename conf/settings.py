@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +31,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.sites',
 
     # 3rd Party
     'rest_framework',
@@ -48,14 +49,22 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     
-
     # Local
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
     'articles.apps.ArticlesConfig',
     'frontend.apps.FrontendConfig',
-
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,6 +144,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -145,3 +155,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/4.1/topics/auth/customizing/#substituting-a-custom-user-model
 
 AUTH_USER_MODEL = 'accounts.User'
+
+
+# Managing files
+# https://docs.djangoproject.com/en/3.1/topics/files/#managing-files
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+# Static file directories
+# https://docs.djangoproject.com/en/3.1/ref/settings/#staticfiles-dirs
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
+
+SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+}
