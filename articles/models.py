@@ -14,7 +14,6 @@ class Article(models.Model):
     HOCKEY = "Hockey"
     BASEBALL = "Baseball"
     BASKETBALL = "Basketball"
-    SOCCER = "Soccer"
     TABS = [
         (GENERAL, "General"),
         (FOOTBALL, "Football"),
