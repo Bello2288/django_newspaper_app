@@ -2,6 +2,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 
 function RegistrationForm() {
   const [user, setUser] = useState({
@@ -10,6 +12,8 @@ function RegistrationForm() {
     password1: "",
     password2: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -23,6 +27,15 @@ function RegistrationForm() {
     console.warn(err);
   };
 
+  const checkSamePass = (e) => {
+    if (user.password1 !== user.password2) {
+      alert("Your password did not match.");
+      return;
+    } else {
+      handleSubmit(e);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const options = {
@@ -33,20 +46,20 @@ function RegistrationForm() {
       },
       body: JSON.stringify(user),
     };
-
-    const response = await fetch("/dj-rest-auth/registration/", options).catch(
-      handleError
-    );
+    const response = await fetch("/dj-rest-auth/registration/", options).catch(handleError);
     if (!response.ok) {
       throw new Error("Network response was not OK.");
     } else {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
+      navigate("/profile");
+      setSuperState({ ...superState, auth: true, admin: data.is_superuser, authorID: data.id });
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={checkSamePass}>
+      <h1>Register</h1>
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Username</Form.Label>
         <Form.Control
@@ -57,7 +70,7 @@ function RegistrationForm() {
           onChange={handleInput}
         />
       </Form.Group>
-
+      
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email address</Form.Label>
         <Form.Control
