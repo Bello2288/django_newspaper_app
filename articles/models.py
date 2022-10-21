@@ -9,13 +9,13 @@ class Article(models.Model):
     image = models.ImageField(upload_to="articles", null=True)
     is_published = models.BooleanField(default=False)
 
-    GENERAL = "General"
+    ALL = "All"
     FOOTBALL = "Football"
     HOCKEY = "Hockey"
     BASEBALL = "Baseball"
     BASKETBALL = "Basketball"
     TABS = [
-        (GENERAL, "General"),
+        (ALL, "All"),
         (FOOTBALL, "Football"),
         (HOCKEY, "Hockey"),
         (BASEBALL, "Baseball"),
@@ -24,7 +24,7 @@ class Article(models.Model):
     catagory = models.CharField(
         max_length=10, 
         choices=TABS, 
-        default=GENERAL,
+        default=ALL,
     )
 
 
