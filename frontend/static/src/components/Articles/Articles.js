@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 function Articles() {
   const [articles, setArticles] = useState([]);
   const [activeArticle, setActiveArticle] = useState();
-  const [filter, setFilter] = useState("GENERAL");
+  const [filter, setFilter] = useState("ALL");
 
   const handleError = (err) => {
     console.warn(err);
@@ -35,8 +35,8 @@ function Articles() {
 
   return (
     <div>
-      <Button variant="outline-dark" value='GENERAL' onClick={(e) => setFilter(e.target.value)}>
-            General
+      <Button variant="outline-dark" value='ALL' onClick={(e) => setFilter(e.target.value)}>
+            ALL
       </Button>
       <Button variant="outline-dark" value='FOOTBALL' onClick={(e) => setFilter(e.target.value)}>
             Football

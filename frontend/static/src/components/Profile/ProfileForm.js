@@ -9,10 +9,9 @@ function ProfileForm() {
 
   const handleImage = (event) => {
     const file = event.target.files[0];
-
     setProfile({
       ...profile,
-      [event.target.name]: file,
+      [profile.avatar]: file,
     });
 
     const reader = new FileReader();
@@ -22,6 +21,10 @@ function ProfileForm() {
     };
     reader.readAsDataURL(file);
   }; 
+
+  const handleError = (err) => {
+    console.warm(err);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +40,9 @@ function ProfileForm() {
       body: formData, 
     };
 
-    const response = await fetch("/api/v1/profiles/", options);
+    const response = await fetch("/api/v1/profiles/", options).catch(handleError);
     const data = await response.json();
-    console.log(data);  
+    console.log(data); 
   };
 
   return (

@@ -7,6 +7,8 @@ class Article(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
     image = models.ImageField(upload_to="articles", null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
 
     ALL = "All"
@@ -14,6 +16,11 @@ class Article(models.Model):
     HOCKEY = "Hockey"
     BASEBALL = "Baseball"
     BASKETBALL = "Basketball"
+    DRAFTS = "Drafts"
+    SUBMITTED = "Submitted"
+    PUBLISHED = "Published"
+    REJECTED = "Rejected"
+
     TABS = [
         (ALL, "All"),
         (FOOTBALL, "Football"),
@@ -21,6 +28,13 @@ class Article(models.Model):
         (BASEBALL, "Baseball"),
         (BASKETBALL, "Basketball"),
     ]
+    STATUS = [
+        (DRAFTS, "Drafts"),
+        (SUBMITTED, "Submitted"),
+        (PUBLISHED, "Published"),
+        (REJECTED, "Rejected"),
+    ]
+
     catagory = models.CharField(
         max_length=10, 
         choices=TABS, 

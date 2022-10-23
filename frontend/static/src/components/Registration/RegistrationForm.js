@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 
-function RegistrationForm() {
+function RegistrationForm({ superState, setSuperState }) {
   const [user, setUser] = useState({
     username: "",
     email: "",

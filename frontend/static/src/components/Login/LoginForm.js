@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
 
-function LoginForm() {
+function LoginForm({ superState, setSuperState }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
