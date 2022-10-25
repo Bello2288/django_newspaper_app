@@ -1,10 +1,11 @@
 from rest_framework import serializers
-from .models import Article
+from . import models
+from dataclasses import fields
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.username')
     
     class Meta:
-        model = Article
+        model = models.Article
         fields = '__all__'

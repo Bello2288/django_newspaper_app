@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 function Articles() {
   const [articles, setArticles] = useState([]);
   const [activeArticle, setActiveArticle] = useState();
-  const [filter, setFilter] = useState("ALL");
+  const [filter, setFilter] = useState("All");
 
   const handleError = (err) => {
     console.warn(err);
@@ -33,27 +33,67 @@ function Articles() {
     setActiveArticle(articleAtIndex);
   };
 
+  const filteredArticles = articles.filter((article) =>
+    filter ? article.category === filter : article
+  );
+
+  const changeCategory = (value) => {
+    setFilter(value);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    setActiveArticle(filteredArticles[0]);
+  }, [filteredArticles]);
+
   return (
-    <div>
-      <Button variant="outline-dark" value='ALL' onClick={(e) => setFilter(e.target.value)}>
-            ALL
-      </Button>
-      <Button variant="outline-dark" value='FOOTBALL' onClick={(e) => setFilter(e.target.value)}>
-            Football
-      </Button>
-      <Button variant="outline-dark" value='HOCKEY' onClick={(e) => setFilter(e.target.value)}>
-            Hockey
-      </Button>
-      <Button variant="outline-dark" value='BASEBALL' onClick={(e) => setFilter(e.target.value)}>
-            Baseball
-      </Button>
-      <Button variant="outline-dark" value='BASKETBALL' onClick={(e) => setFilter(e.target.value)}>
-            Basketball
-      </Button>
-      <aside>
-        <ArticleList articles={articles} updateDisplay={updateDisplay} filter={filter}/>
-      </aside>
-      {activeArticle && <ArticleDisplay activeArticle={activeArticle} />}
+    <div className="display">
+      <section className="sort-buttons">
+        <Button 
+        className="sort-button" 
+        variant="outline-dark" 
+        value='All' 
+        onClick={(e) => changeCategory(e.target.value)}>
+              ALL
+        </Button>
+        <Button 
+        className="sort-button" 
+        variant="outline-dark" 
+        value='Football' 
+        onClick={(e) => changeCategory(e.target.value)}>
+              Football
+        </Button>
+        <Button 
+        className="sort-button" 
+        variant="outline-dark" 
+        value='Hockey' 
+        onClick={(e) => changeCategory(e.target.value)}>
+              Hockey
+        </Button>
+        <Button 
+        className="sort-button" 
+        variant="outline-dark" 
+        value='Baseball' 
+        onClick={(e) => changeCategory(e.target.value)}>
+              Baseball
+        </Button>
+        <Button 
+        className="sort-button" 
+        variant="outline-dark" 
+        value='Basketball' 
+        onClick={(e) => changeCategory(e.target.value)}>
+              Basketball
+        </Button>
+      </section>
+      <section className="main-display">
+        {activeArticle && <ArticleDisplay activeArticle={activeArticle} />}
+        <aside className="sidebar">
+          <ArticleList 
+            articles={articles} 
+            updateDisplay={updateDisplay} 
+            filteredArticles={filteredArticles} />
+        </aside>
+      </section>
     </div>
   );
 }

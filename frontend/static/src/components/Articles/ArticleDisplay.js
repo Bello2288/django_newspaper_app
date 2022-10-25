@@ -1,10 +1,11 @@
-function ArticleDisplay({activeArticle}) {
+function ArticleDisplay({ activeArticle }) {
     return (
-        <div>
-           <h2>{activeArticle.title}</h2>
-            <p>{activeArticle.body}</p>
-        </div>
-    )
-}
-
-export default ArticleDisplay
+      <article className="highlight-article">
+          <img className="highlight-img" src={activeArticle.image} alt="news article image" />
+        <h2 className="highlight-title">{activeArticle.title}</h2>
+        <p className="highlight-body">{activeArticle.body}</p>
+      </article>
+    );
+  }
+  
+  export default ArticleDisplay;

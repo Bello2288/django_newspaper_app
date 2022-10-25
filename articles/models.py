@@ -1,22 +1,23 @@
+from email.policy import default
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.conf import settings
 
 
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=225)
     body = models.TextField()
-    image = models.ImageField(upload_to="articles", null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='articles/', null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     ALL = "All"
     FOOTBALL = "Football"
     HOCKEY = "Hockey"
     BASEBALL = "Baseball"
     BASKETBALL = "Basketball"
-    DRAFTS = "Drafts"
+    DRAFT = "Drafts"
     SUBMITTED = "Submitted"
     PUBLISHED = "Published"
     REJECTED = "Rejected"
@@ -29,7 +30,7 @@ class Article(models.Model):
         (BASKETBALL, "Basketball"),
     ]
     STATUS = [
-        (DRAFTS, "Drafts"),
+        (DRAFT, "Draft"),
         (SUBMITTED, "Submitted"),
         (PUBLISHED, "Published"),
         (REJECTED, "Rejected"),
@@ -39,6 +40,11 @@ class Article(models.Model):
         max_length=10, 
         choices=TABS, 
         default=ALL,
+    )
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS,
+        default=DRAFT,
     )
 
 
