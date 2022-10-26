@@ -63,7 +63,7 @@ function AdminReview() {
             <>
               <Button
                 className="form-button-pairs"
-                variant="dark"
+                variant="success"
                 type="submit"
                 value="Published"
                 onClick={(e) => handleSubmit(e)}
@@ -72,7 +72,7 @@ function AdminReview() {
               </Button>
               <Button
                 className="form-button-pairs"
-                variant="dark"
+                variant="danger"
                 type="submit"
                 value="Rejected"
                 onClick={(e) => handleSubmit(e)}
@@ -85,7 +85,7 @@ function AdminReview() {
             <>
               <Button
                 className="form-button-pairs"
-                variant="dark"
+                variant="primary"
                 type="submit"
                 value="Archived"
                 onClick={(e) => handleSubmit(e)}
@@ -98,7 +98,7 @@ function AdminReview() {
             <>
               <Button
                 className="form-button-pairs"
-                variant="dark"
+                variant="success"
                 type="submit"
                 value="Published"
                 onClick={(e) => handleSubmit(e)}

@@ -65,7 +65,7 @@ function CreateArticle() {
     };
 
     return (
-        <div className="main-display-area">
+        <div className="create-display">
           <Form className="form">
             <h1 className="form-title">Create New Article</h1>
             <Form.Group className="mb-3" controlId="image">
@@ -101,7 +101,6 @@ function CreateArticle() {
             <Form.Group className="mb-3" controlId="category">
               <Form.Label>Choose Category</Form.Label>
               <Form.Select name="category" value={state.category} onChange={handleInput}>
-                <option value="All">All</option>
                 <option value="Football">Football</option>
                 <option value="Hockey">Hockey</option>
                 <option value="Baseball">Baseball</option>
@@ -110,8 +109,8 @@ function CreateArticle() {
             </Form.Group>
             <div className="form-footer">
               <Button
-                className="form-button-pairs"
-                variant="dark"
+                className="create-buttons"
+                variant="primary"
                 type="submit"
                 value="Draft"
                 onClick={handleSubmit}
@@ -119,8 +118,8 @@ function CreateArticle() {
                 Save
               </Button>
               <Button
-                className="form-button-pairs"
-                variant="dark"
+                className="create-buttons"
+                variant="primary"
                 type="submit"
                 value="Submitted"
                 onClick={handleSubmit}

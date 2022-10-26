@@ -9,9 +9,9 @@ import Articles from "../Articles/Articles";
 // import Header from "../Header/Header";
 import AuthorArticleList from "../Articles/AuthorArticleList";
 import UserDetailView from "../Articles/UserDetailView";
-import CreateArticle from "../Articles/CreateArticle";
+import CreateArticle from "../Articles/AuthorCreateArticle";
 import AdminArticleList from "../Articles/AdminArticleList";
-import AdminReview from "../Articles/AdminReview";
+import AdminReview from "../Articles/AdminArticleReview";
 import Layout from "../Layout/Layout";
 
 

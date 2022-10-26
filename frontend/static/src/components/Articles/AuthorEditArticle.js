@@ -68,14 +68,14 @@ function EditArticle({ state }) {
 
   const nonEditHTML = (
     <>
-      <img className="highlight-img" src={state.image} alt="" />
-      <h2 className="highlight-title">{state.title}</h2>
-      <p className="highlight-body">{state.body}</p>
+      <img className="edit-img" src={state.image} alt="" />
+      <h2 className="edit-title">{state.title}</h2>
+      <p className="edit-body">{state.body}</p>
       {state.status === "Draft" && (
         <>
           <Button
-            className="form-button-pairs"
-            variant="dark"
+            className="edit-buttons"
+            variant="primary"
             type="submit"
             value="Submitted"
             onClick={(e) => handleSubmit(e)}
@@ -83,8 +83,8 @@ function EditArticle({ state }) {
             Submit
           </Button>
           <Button
-            className="form-button-pairs"
-            variant="dark"
+            className="edit-buttons"
+            variant="primary"
             type="button"
             onClick={() => setIsEdit(true)}
           >
@@ -102,7 +102,6 @@ function EditArticle({ state }) {
           <Form.Label>Article Image</Form.Label>
           <Form.Control
             type="file"
-            className="form-control-file"
             name="image"
             onChange={handleImage}
           />
@@ -131,32 +130,31 @@ function EditArticle({ state }) {
         </Form.Group>
         <Form.Group className="mb-3" controlId="category">
           <Form.Label>Choose Category</Form.Label>
-          <Form.Select name="category" value={article.category} onChange={handleInput}>
-                <option value="All">All</option>
+          <Form.Select name="category" value={article.category} onChange={handleInput}> 
                 <option value="Football">Football</option>
                 <option value="Hockey">Hockey</option>
                 <option value="Baseball">Baseball</option>
                 <option value="Basketball">Basketball</option>
           </Form.Select>
         </Form.Group>
-        <div className="edit-form-footer">
+        <div className="edit-footer">
           <Button
-            className="form-button-edit"
-            variant="dark"
+            className="edit-button"
+            variant="primary"
             type="submit"
             value="Submitted"
             onClick={(e) => handleSubmit(e)}
           >
-            Save and Submit
+            Save & Submit
           </Button>
           <Button
-            className="form-button-edit"
-            variant="dark"
+            className="edit-button"
+            variant="primary"
             type="submit"
             value="Draft"
             onClick={(e) => handleSubmit(e)}
           >
-            Save as Draft
+            Save Draft
           </Button>
         </div>
       </Form>

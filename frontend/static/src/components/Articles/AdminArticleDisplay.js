@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
 
-function AdminArticle({ article }) {
+function AdminArticleDisplay({ article }) {
   return (
     <li key={article.id} className="list author-list">
       <div className="article-info">
         <h3 className="aside-title">{article.title}</h3>
         <span>By {article.author_name} | </span>
-        <Badge bg="secondary">{article.status}</Badge>
+        <Badge bg="warning">{article.status}</Badge>
         <div className="view-button">
           <Link className="view-link" to={`/articles/admin/${article.id}`}>
             View Article
@@ -19,4 +19,4 @@ function AdminArticle({ article }) {
   );
 }
 
-export default AdminArticle;
+export default AdminArticleDisplay;

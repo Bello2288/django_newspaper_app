@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import AuthorArticle from "./AuthorArticle";
+import AuthorArticle from "./AuthorArticleDisplay";
 
 
 function AuthorArticleList() {
@@ -40,7 +40,7 @@ function AuthorArticleList() {
         <section className="sort-buttons">
           <Button
             className="sort-button"
-            variant="outline-dark"
+            variant="primary"
             value="Draft"
             onClick={(e) => changeCategory(e.target.value)}
           >
@@ -48,7 +48,7 @@ function AuthorArticleList() {
           </Button>
           <Button
             className="sort-button"
-            variant="outline-dark"
+            variant="primary"
             value="Submitted"
             onClick={(e) => changeCategory(e.target.value)}
           >

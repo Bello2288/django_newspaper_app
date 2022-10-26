@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import AdminArticle from "./AdminArticle";
+import AdminArticleDisplay from "./AdminArticleDisplay";
 import Button from "react-bootstrap/Button";
 
 function AdminArticleList() {
@@ -26,7 +26,7 @@ function AdminArticleList() {
 
   const articleList = adminArticles
     .filter((article) => (filter ? article.status === filter : article))
-    .map((article) => <AdminArticle key={article.id} article={article} />);
+    .map((article) => <AdminArticleDisplay key={article.id} article={article} />);
 
   const changeCategory = (value) => {
     setFilter(value);
@@ -39,7 +39,7 @@ function AdminArticleList() {
         <section className="sort-buttons">
           <Button
             className="sort-button"
-            variant="outline-dark"
+            variant="primary"
             value="Published"
             onClick={(e) => changeCategory(e.target.value)}
           >
@@ -47,7 +47,7 @@ function AdminArticleList() {
           </Button>
           <Button
             className="sort-button"
-            variant="outline-dark"
+            variant="primary"
             value="Submitted"
             onClick={(e) => changeCategory(e.target.value)}
           >
@@ -55,7 +55,7 @@ function AdminArticleList() {
           </Button>
           <Button
             className="sort-button"
-            variant="outline-dark"
+            variant="primary"
             value="Archived"
             onClick={(e) => changeCategory(e.target.value)}
           >

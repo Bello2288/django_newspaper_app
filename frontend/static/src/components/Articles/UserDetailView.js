@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import EditArticle from "./EditArticle";
+import EditArticle from "./AuthorEditArticle";
 
 function UserDetailView() {
   const [state, setState] = useState();
