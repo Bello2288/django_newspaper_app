@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import AuthorArticle from "./AuthorArticle";
 
+
 function AuthorArticleList() {
   const [userArticles, setUserArticles] = useState([]);
   const [filter, setFilter] = useState("Draft");
@@ -54,8 +55,8 @@ function AuthorArticleList() {
             Submitted
           </Button>
         </section>
-        <section>
-          <ul>{filteredArticles}</ul>
+        <section className="author-article-list margin-section">
+          <ul className="list-container">{filteredArticles}</ul>
         </section>
       </div>
     </>

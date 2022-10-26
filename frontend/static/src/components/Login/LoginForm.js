@@ -42,50 +42,64 @@ function LoginForm({ superState, setSuperState }) {
       Cookies.set("Authorization", `Token ${data.key}`);
       console.log(data);
       navigate("/");
-      setSuperState({ ...superState, auth: true, admin: data.is_superuser, authorID: data.id });
+      setSuperState({
+        ...superState,
+        auth: true,
+        admin: data.is_superuser,
+        authorID: data.id,
+        avatar: data.avatar,
+      });
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      <Form.Group className="mb-3" controlId="username">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter username"
-          name="username"
-          value={user.username}
-          onChange={handleInput}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="email">
-        <Form.Label>Email Address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          name="email"
-          value={user.email}
-          onChange={handleInput}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Enter password"
-          name="password"
-          value={user.password}
-          onChange={handleInput}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
-      <p>
-        Don't have an account? Click <Link to={"/register"}>here</Link> to create one.
-      </p>
-    </Form>
+    <div className="main-display-area">
+      <Form className="form" onSubmit={handleSubmit}>
+        <h1 className="form-title">Login</h1>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter username"
+            name="username"
+            value={user.username}
+            onChange={handleInput}
+          />
+        </Form.Group>
+        {/* <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={user.email}
+            onChange={handleInput}
+          />
+        </Form.Group> */}
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter password"
+            name="password"
+            value={user.password}
+            onChange={handleInput}
+          />
+        </Form.Group>
+        <div className="form-footer">
+          <Button className="form-button" variant="dark" type="submit">
+            Login
+          </Button>
+          <p>
+            Don't have an account? Click{" "}
+            <Link className="link login-link" to={"/register"}>
+              here
+            </Link>{" "}
+            to create one.
+          </p>
+        </div>
+      </Form>
+    </div>
   );
 }
 

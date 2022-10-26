@@ -28,11 +28,11 @@ function CreateArticle() {
         setState({
             ...state,
             image: file,
-        })
+        });
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const formData = new FormData();
 
         formData.append('image', state.image);
@@ -47,7 +47,7 @@ function CreateArticle() {
                 'X-CSRFToken': Cookies.get('csrftoken'),
             },
             body: formData,
-        }
+        };
 
         const response = await fetch('/api/v1/articles/', options).catch(handleError);
         if (!response.ok) {
@@ -60,71 +60,77 @@ function CreateArticle() {
                 title: '', 
                 body: '',
                 category: '',
-            })
+            });
         }
-    }
+    };
 
-    return(
-    <Form>
-        <h1>Create New Article</h1>
-        <input 
-            type="file"
-            class="form-control-file" 
-            name='image'
-            onChange={handleImage}
-            />
-        <Form.Group className="mb-3" controlId="title">
-          <Form.Label>Article Title</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Title"
-            name='title'
-            value={state.title}
-            onChange={handleInput}
-            />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="body">
-          <Form.Label>Article Body</Form.Label>
-            <textarea
-                rows='3'
-                class="form-control" 
-                placeholder='Body...'
-                name="body" 
+    return (
+        <div className="main-display-area">
+          <Form className="form">
+            <h1 className="form-title">Create New Article</h1>
+            <Form.Group className="mb-3" controlId="image">
+              <Form.Label>Article Image</Form.Label>
+              <Form.Control
+                type="file"
+                className="form-control-file"
+                name="image"
+                onChange={handleImage}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="title">
+              <Form.Label>Article Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={state.title}
+                onChange={handleInput}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="body">
+              <Form.Label>Article Body</Form.Label>
+              <textarea
+                rows="3"
+                className="form-control"
+                placeholder="Body..."
+                name="body"
                 value={state.body}
                 onChange={handleInput}
-                />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="category">
-          <Form.Label>Choose Category</Form.Label>
-          <Form.Select 
-            name='category'
-            value={state.category}
-            onChange={handleInput}>
-                <option value="ALL">All</option>
-                <option value="FOOTBALL">Football</option>
-                <option value="HOCKEY">Hockey</option>
-                <option value="BASEBALL">Baseball</option>
-                <option value="BASKETBALL">Basketball</option>
-            </Form.Select>
-        </Form.Group>
-        <Button 
-            variant="dark" 
-            type="submit"
-            value="Draft"
-            onClick={handleSubmit}
-            >
-          Save
-        </Button>
-        <Button 
-            variant="dark" 
-            type="submit"
-            value="Submitted"
-            onClick={handleSubmit}
-            >
-          Submit
-        </Button>
-    </Form>
-    )
-}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="category">
+              <Form.Label>Choose Category</Form.Label>
+              <Form.Select name="category" value={state.category} onChange={handleInput}>
+                <option value="All">All</option>
+                <option value="Football">Football</option>
+                <option value="Hockey">Hockey</option>
+                <option value="Baseball">Baseball</option>
+                <option value="Basketball">Basketball</option>
+              </Form.Select>
+            </Form.Group>
+            <div className="form-footer">
+              <Button
+                className="form-button-pairs"
+                variant="dark"
+                type="submit"
+                value="Draft"
+                onClick={handleSubmit}
+              >
+                Save
+              </Button>
+              <Button
+                className="form-button-pairs"
+                variant="dark"
+                type="submit"
+                value="Submitted"
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </div>
+          </Form>
+        </div>
+      );
+    }
 
 export default CreateArticle;

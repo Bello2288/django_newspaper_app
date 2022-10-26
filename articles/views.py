@@ -4,6 +4,8 @@ from . import models
 from . import serializers
 from .permissions import IsAuthorOrReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from django.db.models import Q
+
 
 
 class ArticleListAPIView(generics.ListCreateAPIView):
@@ -40,7 +42,7 @@ class AdminArticleListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.ArticleSerializer
 
     def get_queryset(self):
-        return models.Article.objects.filter(status='SM')
+        return models.Article.objects.filter(Q(status='Published') | Q(status='Submitted') | Q(status='Archived'))
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        serializer.save(author=self.request.user)        

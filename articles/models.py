@@ -1,5 +1,5 @@
 from email.policy import default
-from unittest.util import _MAX_LENGTH
+# from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.conf import settings
 
@@ -11,16 +11,18 @@ class Article(models.Model):
     image = models.ImageField(upload_to='articles/', null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
+    is_highlighted = models.BooleanField(default=False)
 
     ALL = "All"
     FOOTBALL = "Football"
     HOCKEY = "Hockey"
     BASEBALL = "Baseball"
     BASKETBALL = "Basketball"
-    DRAFT = "Drafts"
+    DRAFT = "Draft"
     SUBMITTED = "Submitted"
     PUBLISHED = "Published"
     REJECTED = "Rejected"
+    ARCHIVED = "Archived"
 
     TABS = [
         (ALL, "All"),
@@ -34,6 +36,7 @@ class Article(models.Model):
         (SUBMITTED, "Submitted"),
         (PUBLISHED, "Published"),
         (REJECTED, "Rejected"),
+        (ARCHIVED, "Archived"),
     ]
 
     catagory = models.CharField(
@@ -46,7 +49,6 @@ class Article(models.Model):
         choices=STATUS,
         default=DRAFT,
     )
-
-
+    
     def __str__(self):
         return self.title

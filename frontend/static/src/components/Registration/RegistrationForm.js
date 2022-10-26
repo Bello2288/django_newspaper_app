@@ -29,7 +29,7 @@ function RegistrationForm({ superState, setSuperState }) {
 
   const checkSamePass = (e) => {
     if (user.password1 !== user.password2) {
-      alert("Your password did not match.");
+      alert("Please enter matching passwords.");
       return;
     } else {
       handleSubmit(e);
@@ -48,7 +48,7 @@ function RegistrationForm({ superState, setSuperState }) {
     };
     const response = await fetch("/dj-rest-auth/registration/", options).catch(handleError);
     if (!response.ok) {
-      throw new Error("Network response was not OK.");
+      throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
@@ -57,59 +57,64 @@ function RegistrationForm({ superState, setSuperState }) {
     }
   };
 
+
   return (
-    <Form onSubmit={checkSamePass}>
-      <h1>Register</h1>
-      <Form.Group className="mb-3" controlId="username">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter username"
-          name="username"
-          value={user.username}
-          onChange={handleInput}
-        />
-      </Form.Group>
-      
-      <Form.Group className="mb-3" controlId="email">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          name="email"
-          value={user.email}
-          onChange={handleInput}
-        />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    <div className="main-display-area">
+      <Form className="form" onSubmit={checkSamePass}>
+        <h1 className="form-title">Register</h1>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter username"
+            name="username"
+            value={user.username}
+            onChange={handleInput}
+          />
+        </Form.Group>
+        
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={user.email}
+            onChange={handleInput}
+          />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="password1">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          name="password1"
-          value={user.password1}
-          onChange={handleInput}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="password1">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password1"
+            value={user.password1}
+            onChange={handleInput}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="password2">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Confirm password"
-          name="password2"
-          value={user.password2}
-          onChange={handleInput}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Form.Group className="mb-3" controlId="password2">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Confirm password"
+            name="password2"
+            value={user.password2}
+            onChange={handleInput}
+          />
+        </Form.Group>
+        <div className="form-footer">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </div>
+      </Form>
+    </div>
   );
 }
 

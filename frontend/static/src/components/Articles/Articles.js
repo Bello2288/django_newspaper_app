@@ -1,7 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 import ArticleDisplay from "./ArticleDisplay";
 import ArticleList from "./ArticleList";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+
 
 function Articles() {
   const [articles, setArticles] = useState([]);
@@ -31,6 +32,7 @@ function Articles() {
     const index = articles.findIndex((article) => article.id === id);
     const articleAtIndex = articles[index];
     setActiveArticle(articleAtIndex);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const filteredArticles = articles.filter((article) =>

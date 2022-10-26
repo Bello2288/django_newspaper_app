@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import RegistrationForm from "../Registration/RegistrationForm";
 import ProfileForm from "../Profile/ProfileForm";
 import Articles from "../Articles/Articles";
-import Header from "../Header/Header";
+// import Header from "../Header/Header";
 import AuthorArticleList from "../Articles/AuthorArticleList";
 import UserDetailView from "../Articles/UserDetailView";
 import CreateArticle from "../Articles/CreateArticle";
 import AdminArticleList from "../Articles/AdminArticleList";
 import AdminReview from "../Articles/AdminReview";
+import Layout from "../Layout/Layout";
 
 
 const INITIAL_STATE = {
   auth: false,
   admin: false,
   authorID: 0,
+  avatar: null,
 };
 
 function App() {
@@ -69,10 +71,18 @@ function App() {
 
   return (
     <div className="App">
-      <Header superState={superState} setSuperState={setSuperState} logoutUser={logoutUser} />
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route
+            path="/"
+            element={
+              <Layout
+                superState={superState}
+                setSuperState={setSuperState}
+                logoutUser={logoutUser}
+              />
+            }
+          >
             <Route index element={<Articles />} />
             <Route
               path="login"
