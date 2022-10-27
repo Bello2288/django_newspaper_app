@@ -4,7 +4,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-function EditArticle({ state }) {
+function AuthorEditArticle({ state }) {
   const [isEdit, setIsEdit] = useState(false);
   const [article, setArticle] = useState({
     image: state.image,
@@ -164,4 +164,4 @@ function EditArticle({ state }) {
   return <div className="article-view">{isEdit ? editHTML : nonEditHTML}</div>;
 }
 
-export default EditArticle;
+export default AuthorEditArticle;

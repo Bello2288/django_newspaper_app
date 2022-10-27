@@ -12,6 +12,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     is_highlighted = models.BooleanField(default=False)
+    # phase = models.CharField(max_length=3, choices=PHASE_CHOICES, default=DRAFT)
 
     ALL = "All"
     FOOTBALL = "Football"

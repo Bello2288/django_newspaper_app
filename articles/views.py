@@ -1,11 +1,11 @@
 from rest_framework import generics
+from django.db.models import Q
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+
 from articles import models
 from . import models
 from . import serializers
 from .permissions import IsAuthorOrReadOnly
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
-from django.db.models import Q
-
 
 
 class ArticleListAPIView(generics.ListCreateAPIView):
@@ -15,6 +15,14 @@ class ArticleListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return models.Article.objects.filter(status="Published")
+
+#   def get_queryset(self):
+#       if self.request.user.is_annoymous:
+#           return models.Article.objects.filter(status="Published")
+#       elif self.request.user.is_staff:                                # ~ will be a not Q(status='Draft')
+#           return models.Article.objects.filter(Q(author=self.request.user) | ~Q(status='Draft'))
+#       return models.Article.objects.filter(author=self.request.use)
+
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

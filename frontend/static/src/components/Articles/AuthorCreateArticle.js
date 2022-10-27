@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import Cookies from 'js-cookie'
 
-function CreateArticle() {
+function AuthorCreateArticle() {
     const [state, setState] = useState({
         image: null,
         title: '', 
@@ -132,4 +132,4 @@ function CreateArticle() {
       );
     }
 
-export default CreateArticle;
+export default AuthorCreateArticle;

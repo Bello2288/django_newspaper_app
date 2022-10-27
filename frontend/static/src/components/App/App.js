@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
+import Layout from "../Layout/Layout";
 import RegistrationForm from "../Registration/RegistrationForm";
 import ProfileForm from "../Profile/ProfileForm";
 import Articles from "../Articles/Articles";
-// import Header from "../Header/Header";
 import AuthorArticleList from "../Articles/AuthorArticleList";
 import UserDetailView from "../Articles/UserDetailView";
-import CreateArticle from "../Articles/AuthorCreateArticle";
+import AuthorCreateArticle from "../Articles/AuthorCreateArticle";
 import AdminArticleList from "../Articles/AdminArticleList";
-import AdminReview from "../Articles/AdminArticleReview";
-import Layout from "../Layout/Layout";
+import AdminArticleReview from "../Articles/AdminArticleReview";
 
 
 const INITIAL_STATE = {
@@ -93,11 +92,11 @@ function App() {
               element={<RegistrationForm superState={superState} setSuperState={setSuperState} />}
             />
             <Route path="profile" element={<ProfileForm />} />
-            <Route path="create" element={<CreateArticle />} />
+            <Route path="create" element={<AuthorCreateArticle />} />
             <Route path="article/:id/*" element={<UserDetailView />} />
             <Route path="articles/user/*" element={<AuthorArticleList />} />
             <Route path="articles/admin" element={<AdminArticleList />} />
-            <Route path="articles/admin/:id/*" element={<AdminReview />} />
+            <Route path="articles/admin/:id/*" element={<AdminArticleReview />} />
           </Route>
         </Routes>
       </BrowserRouter>

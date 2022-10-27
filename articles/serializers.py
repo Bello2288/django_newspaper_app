@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from . import models
-from dataclasses import fields
+
 
 
 class ArticleSerializer(serializers.ModelSerializer):

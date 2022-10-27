@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Cookies from "js-cookie";
 
-function AdminReview() {
+function AdminArticleReview() {
   const [state, setState] = useState(null);
 
   const handleError = (err) => {
@@ -26,7 +26,7 @@ function AdminReview() {
     };
 
     getArticle(id);
-  }, []);
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,9 +56,9 @@ function AdminReview() {
     <article className="detail-view">
       {state && (
         <div className="article-view">
-          <img className="highlight-img" src={state.image} alt="" />
-          <h2 className="highlight-title">{state.title}</h2>
-          <p className="highlight-body">{state.body}</p>
+          <img className="article-img" src={state.image} alt="" />
+          <h2 className="article-title">{state.title}</h2>
+          <p className="article-body">{state.body}</p>
           {state.status === "Submitted" && (
             <>
               <Button
@@ -113,4 +113,4 @@ function AdminReview() {
   );
 }
 
-export default AdminReview;
+export default AdminArticleReview;

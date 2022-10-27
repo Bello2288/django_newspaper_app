@@ -32,56 +32,56 @@ function Articles() {
     const index = articles.findIndex((article) => article.id === id);
     const articleAtIndex = articles[index];
     setActiveArticle(articleAtIndex);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const filteredArticles = articles.filter((article) =>
-    filter ? article.category === filter : article
+    filter ? article.category == filter : article
   );
 
   const changeCategory = (value) => {
     setFilter(value);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
     setActiveArticle(filteredArticles[0]);
-  }, [filteredArticles]);
+  }, [filter]);
 
   return (
     <div className="display">
-      <section className="sort-buttons">
+      <section className="buttons-box">
         <Button 
-        className="sort-button" 
-        variant="outline-dark" 
+        className="buttons" 
+        variant="primary" 
         value='All' 
         onClick={(e) => changeCategory(e.target.value)}>
-              ALL
+              All
         </Button>
         <Button 
-        className="sort-button" 
-        variant="outline-dark" 
-        value='Football' 
+        className="buttons" 
+        variant="success" 
+        value="Football" 
         onClick={(e) => changeCategory(e.target.value)}>
               Football
         </Button>
         <Button 
-        className="sort-button" 
-        variant="outline-dark" 
+        className="buttons" 
+        variant="danger" 
         value='Hockey' 
         onClick={(e) => changeCategory(e.target.value)}>
               Hockey
         </Button>
         <Button 
-        className="sort-button" 
-        variant="outline-dark" 
+        className="buttons" 
+        variant="warning" 
         value='Baseball' 
         onClick={(e) => changeCategory(e.target.value)}>
               Baseball
         </Button>
         <Button 
-        className="sort-button" 
-        variant="outline-dark" 
+        className="buttons" 
+        variant="info" 
         value='Basketball' 
         onClick={(e) => changeCategory(e.target.value)}>
               Basketball

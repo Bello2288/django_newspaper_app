@@ -36,9 +36,9 @@ function AdminArticleList() {
   return (
     <>
       <div className="display">
-        <section className="sort-buttons">
+        <section className="buttons-box">
           <Button
-            className="sort-button"
+            className="buttons"
             variant="primary"
             value="Published"
             onClick={(e) => changeCategory(e.target.value)}
@@ -46,7 +46,7 @@ function AdminArticleList() {
             Published
           </Button>
           <Button
-            className="sort-button"
+            className="buttons"
             variant="primary"
             value="Submitted"
             onClick={(e) => changeCategory(e.target.value)}
@@ -54,7 +54,7 @@ function AdminArticleList() {
             Submitted
           </Button>
           <Button
-            className="sort-button"
+            className="buttons"
             variant="primary"
             value="Archived"
             onClick={(e) => changeCategory(e.target.value)}

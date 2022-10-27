@@ -23,7 +23,7 @@ function UserDetailView() {
     };
 
     getArticle(id);
-  }, []);
+  }, [id]);
 
   return <article className="detail-view">{state && <EditArticle state={state} />}</article>;
 }
