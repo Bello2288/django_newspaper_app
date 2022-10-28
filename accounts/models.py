@@ -11,7 +11,6 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='profiles/') 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
-    #alias = models.CharField(max_lenth......)
                                                               
     def __str__(self):                                         
         return self.user.username  

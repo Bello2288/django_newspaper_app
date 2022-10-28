@@ -36,7 +36,7 @@ function Articles() {
   };
 
   const filteredArticles = articles.filter((article) =>
-    filter ? article.category == filter : article
+    filter ? article.category === filter : article
   );
 
   const changeCategory = (value) => {
@@ -46,7 +46,7 @@ function Articles() {
 
   useEffect(() => {
     setActiveArticle(filteredArticles[0]);
-  }, [filter]);
+  }, [filteredArticles]);
 
   return (
     <div className="display">
@@ -68,28 +68,28 @@ function Articles() {
         <Button 
         className="buttons" 
         variant="danger" 
-        value='Hockey' 
+        value="Hockey" 
         onClick={(e) => changeCategory(e.target.value)}>
               Hockey
         </Button>
         <Button 
         className="buttons" 
         variant="warning" 
-        value='Baseball' 
+        value="Baseball"
         onClick={(e) => changeCategory(e.target.value)}>
               Baseball
         </Button>
         <Button 
         className="buttons" 
         variant="info" 
-        value='Basketball' 
+        value="Basketball" 
         onClick={(e) => changeCategory(e.target.value)}>
               Basketball
         </Button>
       </section>
       <section className="main-display">
         {activeArticle && <ArticleDisplay activeArticle={activeArticle} />}
-        <aside className="sidebar">
+        <aside>
           <ArticleList 
             articles={articles} 
             updateDisplay={updateDisplay} 

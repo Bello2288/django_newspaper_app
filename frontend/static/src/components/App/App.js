@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
-import Layout from "../Layout/Layout";
+import Layout from "./Layout";
 import RegistrationForm from "../Registration/RegistrationForm";
 import ProfileForm from "../Profile/ProfileForm";
 import Articles from "../Articles/Articles";
@@ -18,7 +18,6 @@ const INITIAL_STATE = {
   auth: false,
   admin: false,
   authorID: 0,
-  avatar: null,
 };
 
 function App() {
@@ -72,25 +71,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout
-                superState={superState}
-                setSuperState={setSuperState}
-                logoutUser={logoutUser}
-              />
-            }
-          >
+          <Route path="/" element={<Layout superState={superState} setSuperState={setSuperState} logoutUser={logoutUser} />} >
             <Route index element={<Articles />} />
-            <Route
-              path="login"
-              element={<LoginForm superState={superState} setSuperState={setSuperState} />}
-            />
-            <Route
-              path="register"
-              element={<RegistrationForm superState={superState} setSuperState={setSuperState} />}
-            />
+            <Route path="login" element={<LoginForm superState={superState} setSuperState={setSuperState} />} />
+            <Route path="register" element={<RegistrationForm superState={superState} setSuperState={setSuperState} />} />
             <Route path="profile" element={<ProfileForm />} />
             <Route path="create" element={<AuthorCreateArticle />} />
             <Route path="article/:id/*" element={<UserDetailView />} />
