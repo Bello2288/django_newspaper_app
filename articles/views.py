@@ -1,28 +1,21 @@
 from rest_framework import generics
-from django.db.models import Q
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
-
 from articles import models
 from . import models
 from . import serializers
-from .permissions import IsAuthorOrReadOnly
+from django.db.models import Q
+from .permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
+# Create your views here.
 
 
 class ArticleListAPIView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
     queryset = models.Article.objects.order_by('-created_at')
     serializer_class = serializers.ArticleSerializer
 
     def get_queryset(self):
-        return models.Article.objects.filter(status="Published")
-
-#   def get_queryset(self):
-#       if self.request.user.is_annoymous:
-#           return models.Article.objects.filter(status="Published")
-#       elif self.request.user.is_staff:                                # ~ will be a not Q(status='Draft')
-#           return models.Article.objects.filter(Q(author=self.request.user) | ~Q(status='Draft'))
-#       return models.Article.objects.filter(author=self.request.use)
-
+        return models.Article.objects.filter(status='PUB')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -35,6 +28,7 @@ class ArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class AuthorArticleListAPIView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = serializers.ArticleSerializer
 
     def get_queryset(self):
@@ -50,7 +44,7 @@ class AdminArticleListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.ArticleSerializer
 
     def get_queryset(self):
-        return models.Article.objects.filter(Q(status='Published') | Q(status='Submitted') | Q(status='Archived'))
+        return models.Article.objects.filter(Q(status='PUB') | Q(status='SUB') | Q(status='ARC'))
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)        
+        serializer.save(author=self.request.user)  

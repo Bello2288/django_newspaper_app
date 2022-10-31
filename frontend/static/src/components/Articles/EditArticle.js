@@ -4,7 +4,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-function AuthorEditArticle({ state }) {
+function EditArticle({ state }) {
   const [isEdit, setIsEdit] = useState(false);
   const [article, setArticle] = useState({
     image: state.image,
@@ -68,23 +68,23 @@ function AuthorEditArticle({ state }) {
 
   const nonEditHTML = (
     <>
-      <img className="edit-img" src={state.image} alt="" />
-      <h2 className="edit-title">{state.title}</h2>
-      <p className="edit-body">{state.body}</p>
-      {state.status === "Draft" && (
+      <img className="highlight-img" src={state.image} alt="news article image" />
+      <h2 className="highlight-title">{state.title}</h2>
+      <p className="highlight-body">{state.body}</p>
+      {state.status === "DRA" && (
         <>
           <Button
-            className="edit-buttons"
-            variant="primary"
+            className="form-button-pairs"
+            variant="dark"
             type="submit"
-            value="Submitted"
+            value="SUB"
             onClick={(e) => handleSubmit(e)}
           >
             Submit
           </Button>
           <Button
-            className="edit-buttons"
-            variant="primary"
+            className="form-button-pairs"
+            variant="dark"
             type="button"
             onClick={() => setIsEdit(true)}
           >
@@ -102,6 +102,7 @@ function AuthorEditArticle({ state }) {
           <Form.Label>Article Image</Form.Label>
           <Form.Control
             type="file"
+            className="form-control-file"
             name="image"
             onChange={handleImage}
           />
@@ -130,28 +131,28 @@ function AuthorEditArticle({ state }) {
         </Form.Group>
         <Form.Group className="mb-3" controlId="category">
           <Form.Label>Choose Category</Form.Label>
-          <Form.Select name="category" value={article.category} onChange={handleInput}> 
-                <option value="Football">Football</option>
-                <option value="Hockey">Hockey</option>
-                <option value="Baseball">Baseball</option>
-                <option value="Basketball">Basketball</option>
+          <Form.Select name="category" value={article.category} onChange={handleInput}>
+            <option value="FB">Football</option>
+            <option value="HK">Hockey</option>
+            <option value="BS">Baseball</option>
+            <option value="BK">Basketball</option>
           </Form.Select>
         </Form.Group>
-        <div className="edit-footer">
+        <div className="edit-form-footer">
           <Button
-            className="edit-button"
-            variant="primary"
+            className="form-button-edit"
+            variant="dark"
             type="submit"
-            value="Submitted"
+            value="SUB"
             onClick={(e) => handleSubmit(e)}
           >
             Save & Submit
           </Button>
           <Button
-            className="edit-button"
-            variant="primary"
+            className="form-button-edit"
+            variant="dark"
             type="submit"
-            value="Draft"
+            value="DRA"
             onClick={(e) => handleSubmit(e)}
           >
             Save Draft
@@ -164,4 +165,4 @@ function AuthorEditArticle({ state }) {
   return <div className="article-view">{isEdit ? editHTML : nonEditHTML}</div>;
 }
 
-export default AuthorEditArticle;
+export default EditArticle;

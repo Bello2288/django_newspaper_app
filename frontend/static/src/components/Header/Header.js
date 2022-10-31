@@ -1,8 +1,8 @@
+import "../../styles/Header.css";
 import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
-
 
 function Header({ superState, logoutUser }) {
   const navigate = useNavigate();
@@ -21,35 +21,34 @@ function Header({ superState, logoutUser }) {
           </Navbar.Brand>
           <div className="desk-nav">
             <Nav className="me-auto desk-nav-links">
-            {!superState.auth && (
+              {!superState.auth && (
                 <>
                   <Nav.Link href="/login">Login</Nav.Link>
                 </>
               )}
               {superState.auth && !superState.admin && (
                 <>
-                  <Nav.Link href="/create">Create Article</Nav.Link>
-                  <Nav.Link href="/articles/user">My Articles</Nav.Link>
+                  <Nav.Link className="at" href="/create">Article <br></br>Creation</Nav.Link>
+                  <Nav.Link className="article-tabs" href="/articles/user">View My <br></br>Articles</Nav.Link>
                 </>
               )}
               {superState.admin && (
                 <>
-                  <Nav.Link href="/articles/admin">Review Articles</Nav.Link>
+                  <Nav.Link className="artricle-review" href="/articles/editor">Review Articles</Nav.Link>
                 </>
               )}
               {superState.auth && (
-                <Nav.Link href="/" onClick={(e) => logout(e)}>
+                <Nav.Link className="logout" href="/" onClick={(e) => logout(e)}>
                   Logout
                 </Nav.Link>
               )}
             </Nav>
             {superState.avatar && (
-              <img className="profile-picture" src={superState.avatar} alt="" />
+              <img className="profile-picture" src={superState.avatar} alt="profile picture" />
             )}
           </div>
         </Container>
       </Navbar>
-
 
       <Nav className="me-auto mobile-nav">
         {!superState.auth && (
@@ -71,7 +70,7 @@ function Header({ superState, logoutUser }) {
         )}
         {superState.admin && (
           <>
-            <Nav.Link className="footer-link" href="/articles/admin">
+            <Nav.Link className="footer-link" href="/articles/editor">
               Review Articles
             </Nav.Link>
           </>

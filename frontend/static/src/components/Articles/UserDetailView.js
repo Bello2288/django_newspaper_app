@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import EditArticle from "./AuthorEditArticle";
+import EditArticle from "./EditArticle";
 
 function UserDetailView() {
   const [state, setState] = useState();
@@ -23,7 +23,7 @@ function UserDetailView() {
     };
 
     getArticle(id);
-  }, [id]);
+  }, []);
 
   return <article className="detail-view">{state && <EditArticle state={state} />}</article>;
 }

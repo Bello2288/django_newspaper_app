@@ -1,11 +1,11 @@
+import "../../styles/Article.css";
 import { useState, useCallback, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import AuthorArticleDisplay from "./AuthorArticleDisplay";
-
+import AuthorArticle from "./AuthorArticle";
 
 function AuthorArticleList() {
   const [userArticles, setUserArticles] = useState([]);
-  const [filter, setFilter] = useState("Draft");
+  const [filter, setFilter] = useState("DRA");
 
   const handleError = (err) => {
     console.warn(err);
@@ -26,8 +26,8 @@ function AuthorArticleList() {
   }, [getUserArticles]);
 
   const filteredArticles = userArticles
-    .filter((article) => (filter ? article.status === filter : article))
-    .map((article) => <AuthorArticleDisplay key={article.id} article={article} />);
+    .filter((article) => (filter ? article.status == filter : article))
+    .map((article) => <AuthorArticle key={article.id} article={article} />);
 
   const changeCategory = (value) => {
     setFilter(value);
@@ -37,19 +37,19 @@ function AuthorArticleList() {
   return (
     <>
       <div className="display">
-        <section className="buttons-box">
+        <section className="author-buttons">
           <Button
-            className="buttons"
-            variant="primary"
-            value="Draft"
+            className="author-button"
+            variant="outline-dark"
+            value="DRA"
             onClick={(e) => changeCategory(e.target.value)}
           >
             Draft
           </Button>
           <Button
-            className="buttons"
-            variant="primary"
-            value="Submitted"
+            className="author-button"
+            variant="outline-dark"
+            value="SUB"
             onClick={(e) => changeCategory(e.target.value)}
           >
             Submitted

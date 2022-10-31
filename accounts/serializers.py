@@ -4,8 +4,6 @@ from dj_rest_auth.models import TokenModel
 
 # User = get_user_model()
 
-
-
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source='user.username')
 

@@ -1,12 +1,15 @@
+import "../../styles/Form.css";
 import { useState } from "react";
+import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Cookies from "js-cookie";
+///
 import { useNavigate, Link } from "react-router-dom";
 
 function LoginForm({ superState, setSuperState }) {
   const [user, setUser] = useState({
     username: "",
+    email: "",
     password: "",
   });
 

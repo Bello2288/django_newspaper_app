@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Cookies from "js-cookie";
 
-function AdminArticleReview() {
+function AdminReview() {
   const [state, setState] = useState(null);
 
   const handleError = (err) => {
@@ -26,7 +26,7 @@ function AdminArticleReview() {
     };
 
     getArticle(id);
-  }, [id]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ function AdminArticleReview() {
     } else {
       const data = await response.json();
       console.log(data);
-      navigate("/articles/admin");
+      navigate("/articles/editor");
     }
   };
 
@@ -56,51 +56,51 @@ function AdminArticleReview() {
     <article className="detail-view">
       {state && (
         <div className="article-view">
-          <img className="article-img" src={state.image} alt="" />
-          <h2 className="article-title">{state.title}</h2>
-          <p className="article-body">{state.body}</p>
-          {state.status === "Submitted" && (
+          <img className="highlight-img" src={state.image} alt="news article image" />
+          <h2 className="highlight-title">{state.title}</h2>
+          <p className="highlight-body">{state.body}</p>
+          {state.status === "SUB" && (
             <>
               <Button
                 className="form-button-pairs"
-                variant="success"
+                variant="dark"
                 type="submit"
-                value="Published"
+                value="PUB"
                 onClick={(e) => handleSubmit(e)}
               >
                 Publish
               </Button>
               <Button
                 className="form-button-pairs"
-                variant="danger"
+                variant="dark"
                 type="submit"
-                value="Rejected"
+                value="REJ"
                 onClick={(e) => handleSubmit(e)}
               >
                 Reject
               </Button>
             </>
           )}
-          {state.status === "Published" && (
+          {state.status === "PUB" && (
             <>
               <Button
                 className="form-button-pairs"
-                variant="primary"
+                variant="dark"
                 type="submit"
-                value="Archived"
+                value="ARC"
                 onClick={(e) => handleSubmit(e)}
               >
                 Archive
               </Button>
             </>
           )}
-          {state.status === "Archived" && (
+          {state.status === "ARC" && (
             <>
               <Button
                 className="form-button-pairs"
-                variant="success"
+                variant="dark"
                 type="submit"
-                value="Published"
+                value="PB"
                 onClick={(e) => handleSubmit(e)}
               >
                 Re-Publish
@@ -113,4 +113,4 @@ function AdminArticleReview() {
   );
 }
 
-export default AdminArticleReview;
+export default AdminReview;

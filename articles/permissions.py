@@ -6,30 +6,30 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return obj.author == request.user or request.user.is_staff
+        if request.user == obj.author:
+            return True
+
+        if request.method in ['PUT', 'PATCH']:
+            if obj.status in ['PUB', 'SUB', 'ARC']:
+                if request.user.is_superuser:
+                    return True
+                else:
+                    return False
+            if obj.status in ['DRA']:
+                if request.user == obj.author:
+                    return True
+                else:
+                    return False
+
+        return False
 
 
+class IsAdminOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
 
-
-# class ArticleListPermissions(permissions.BasePermissions):
-#
-#   def has_permission(self, request, view):
-#       if request.method in permissions.SAFE_METHODS:
-#           return True
-#       elif requests.method == 'POST' and request.data.get('phase') is not None:
-#           if request.user.is_staff:
-#               return request.data.get('phase') in ('DFR', 'SUB', 'PUB',)
-#           else :
-#               return request.data.get('phase') in ('DFR', 'SUB',)
-#
-#       return not request.user.is_annoymous
-#
-#   def has_object_permission(self, request, view, obj):
-#       if request.method = 'DELETE':
-#           if obj.phase == 'DRF' and obj.authir == request.user:
-#               return True
-#
-#       return False
-#
-#   ('DFR',) --- is a tuple
-#   ('DFR') --- not a tuple
+        if request.user.is_superuser:
+            return True
+        else:
+            return False

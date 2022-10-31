@@ -1,11 +1,13 @@
+import "../../styles/Article.css";
+
 function ArticleDisplay({ activeArticle }) {
-    return (
-      <article className="article-article">
-        <img className="article-img" src={activeArticle.image} alt="" />
-        <h2 className="article-title">{activeArticle.title}</h2>
-        <p className="article-body">{activeArticle.body}</p>
-      </article>
-    );
-  }
-  
-  export default ArticleDisplay;
+  return (
+    <article className="highlight-article">
+      <img className="highlight-img" src={activeArticle.image} alt="news article image" />
+      <h2 className="highlight-title">{activeArticle.title}</h2>
+      <p className="highlight-body">{activeArticle.body}</p>
+    </article>
+  );
+}
+
+export default ArticleDisplay;

@@ -1,7 +1,9 @@
+import "../../styles/Form.css";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+// import "../Images/default-profile.jpg";
 import { useNavigate } from "react-router-dom";
 
 function ProfileForm() {
@@ -48,6 +50,7 @@ function ProfileForm() {
 
     const response = await fetch("/api/v1/profiles/", options).catch(handleError);
     const data = await response.json();
+    console.log(data);
     navigate("/");
   };
 

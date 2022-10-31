@@ -1,10 +1,11 @@
+import "../../styles/Article.css";
 import { useState, useCallback, useEffect } from "react";
-import AdminArticleDisplay from "./AdminArticleDisplay";
+import AdminArticle from "./AdminArticle";
 import Button from "react-bootstrap/Button";
 
 function AdminArticleList() {
   const [adminArticles, setAdminArticles] = useState([]);
-  const [filter, setFilter] = useState("Published");
+  const [filter, setFilter] = useState("PUB");
 
   const handleError = (err) => {
     console.warn(err);
@@ -25,8 +26,8 @@ function AdminArticleList() {
   }, [getAdminArticles]);
 
   const articleList = adminArticles
-    .filter((article) => (filter ? article.status === filter : article))
-    .map((article) => <AdminArticleDisplay key={article.id} article={article} />);
+    .filter((article) => (filter ? article.status == filter : article))
+    .map((article) => <AdminArticle key={article.id} article={article} />);
 
   const changeCategory = (value) => {
     setFilter(value);
@@ -36,27 +37,27 @@ function AdminArticleList() {
   return (
     <>
       <div className="display">
-        <section className="buttons-box">
+        <section className="admin-buttons">
           <Button
-            className="buttons"
-            variant="primary"
-            value="Published"
+            className="admin-button"
+            variant="outline-dark"
+            value="PUB"
             onClick={(e) => changeCategory(e.target.value)}
           >
             Published
           </Button>
           <Button
-            className="buttons"
-            variant="primary"
-            value="Submitted"
+            className="admin-button"
+            variant="outline-dark"
+            value="SUB"
             onClick={(e) => changeCategory(e.target.value)}
           >
             Submitted
           </Button>
           <Button
-            className="buttons"
-            variant="primary"
-            value="Archived"
+            className="admin-button"
+            variant="outline-dark"
+            value="ARC"
             onClick={(e) => changeCategory(e.target.value)}
           >
             Archived

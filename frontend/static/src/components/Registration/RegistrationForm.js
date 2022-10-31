@@ -1,9 +1,10 @@
+import "../../styles/Form.css";
 import { useState } from "react";
+import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Cookies from "js-cookie";
+///
 import { useNavigate } from "react-router-dom";
-
 
 function RegistrationForm({ superState, setSuperState }) {
   const [user, setUser] = useState({
@@ -57,7 +58,6 @@ function RegistrationForm({ superState, setSuperState }) {
     }
   };
 
-
   return (
     <div className="main-display-area">
       <Form className="form" onSubmit={checkSamePass}>
@@ -72,9 +72,8 @@ function RegistrationForm({ superState, setSuperState }) {
             onChange={handleInput}
           />
         </Form.Group>
-        
         <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email Address</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -82,35 +81,29 @@ function RegistrationForm({ superState, setSuperState }) {
             value={user.email}
             onChange={handleInput}
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="password1">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Enter password"
             name="password1"
             value={user.password1}
             onChange={handleInput}
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="password2">
-          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Confirm password"
+            placeholder="Enter password again"
             name="password2"
             value={user.password2}
             onChange={handleInput}
           />
         </Form.Group>
         <div className="form-footer">
-          <Button variant="primary" type="submit">
-            Submit
+          <Button className="form-button" variant="dark" type="submit">
+            Register
           </Button>
         </div>
       </Form>
