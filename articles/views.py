@@ -6,8 +6,6 @@ from django.db.models import Q
 from .permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
-# Create your views here.
-
 
 class ArticleListAPIView(generics.ListCreateAPIView):
     permission_classes = (IsAdminOrReadOnly,)

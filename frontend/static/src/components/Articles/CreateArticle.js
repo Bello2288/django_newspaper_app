@@ -125,7 +125,7 @@ function CreateArticle() {
             value="SUB"
             onClick={handleSubmit}
           >
-            Submit
+            Submit 
           </Button>
         </div>
       </Form>

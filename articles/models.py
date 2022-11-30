@@ -1,4 +1,3 @@
-from email.policy import default
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.conf import settings
@@ -14,6 +13,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     is_highlighted = models.BooleanField(default=False)
+   
 
     FOOTBALL = 'FB'
     HOCKEY = 'HK'

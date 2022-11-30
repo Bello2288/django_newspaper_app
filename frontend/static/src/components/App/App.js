@@ -71,25 +71,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout
-                superState={superState}
-                setSuperState={setSuperState}
-                logoutUser={logoutUser}
-              />
-            }
+          <Route path="/" element={<Layout superState={superState} setSuperState={setSuperState} logoutUser={logoutUser} />}
           >
             <Route index element={<Articles />} />
-            <Route
-              path="login"
-              element={<LoginForm superState={superState} setSuperState={setSuperState} />}
-            />
-            <Route
-              path="register"
-              element={<RegistrationForm superState={superState} setSuperState={setSuperState} />}
-            />
+            <Route path="login" element={<LoginForm superState={superState} setSuperState={setSuperState} />} />
+            <Route path="register" element={<RegistrationForm superState={superState} setSuperState={setSuperState} />} />
             <Route path="profile" element={<ProfileForm />} />
             {superState.auth && (
               <>

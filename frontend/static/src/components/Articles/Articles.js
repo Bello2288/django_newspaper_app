@@ -87,11 +87,7 @@ function Articles() {
       <section className="main-display">
         {activeArticle && <ArticleDisplay activeArticle={activeArticle} />}
         <aside className="sidebar">
-          <ArticleList
-            articles={articles}
-            updateDisplay={updateDisplay}
-            filteredArticles={filteredArticles}
-          />
+          <ArticleList articles={articles} updateDisplay={updateDisplay} filteredArticles={filteredArticles} />
         </aside>
       </section>
     </div>
