@@ -24,7 +24,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'newspaper-app-mwoodington.herokuapp.com',
+    'newspaper-app-bello2288.herokuapp.com/',
 ]
 
 
